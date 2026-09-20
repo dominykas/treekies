@@ -1,0 +1,22 @@
+{
+  "heroes": [
+    {
+      "id": "treekie",
+      "name": "Miškinukė",
+      "image": "assets/characters/hero.png",
+      "height": 110,
+      "facing": "right",
+      "speed": 260,
+      "pet": "pet"
+    }
+  ],
+  "pets": [
+    {
+      "id": "pet",
+      "name": "Lapiukas",
+      "image": "assets/characters/pet.png",
+      "height": 60,
+      "facing": "right"
+    }
+  ]
+}

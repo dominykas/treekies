@@ -1,0 +1,39 @@
+{
+  "map": {
+    "image": "assets/map/map.png",
+    "walkmask": "assets/map/walkmask.png"
+  },
+  "start": { "x": 380, "y": 1160 },
+  "places": [
+    {
+      "id": "home",
+      "name": { "lt": "Namukas", "en": "Home" },
+      "x": 380, "y": 1150, "radius": 110,
+      "text": { "lt": "Čia gyvena Miškinukės.", "en": "This is where the Treekies live." }
+    },
+    {
+      "id": "bakery",
+      "name": { "lt": "Kepyklėlė", "en": "Bakery" },
+      "x": 1150, "y": 430, "radius": 110,
+      "text": { "lt": "Kvepia bandelėmis! Ką čia galima veikti?", "en": "Smells of buns! What can you do here?" }
+    },
+    {
+      "id": "treehouse",
+      "name": { "lt": "Medžių namelis", "en": "Treehouse" },
+      "x": 2000, "y": 380, "radius": 110,
+      "text": { "lt": "Aukštai medyje kažkas yra...", "en": "There's something high up in the tree..." }
+    },
+    {
+      "id": "market",
+      "name": { "lt": "Turgus", "en": "Market" },
+      "x": 1250, "y": 1250, "radius": 130,
+      "text": { "lt": "Prekystaliai dar tušti.", "en": "The stalls are still empty." }
+    },
+    {
+      "id": "lake",
+      "name": { "lt": "Ežeras", "en": "Lake" },
+      "x": 1880, "y": 1080, "radius": 120,
+      "text": { "lt": "Ar ežere yra žuvų?", "en": "Are there fish in the lake?" }
+    }
+  ]
+}
