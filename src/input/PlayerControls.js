@@ -53,6 +53,6 @@ export class PlayerControls {
     if (ok(x + dx, y + dy)) this.character.step(dx, dy);
     else if (dx && ok(x + dx, y)) this.character.step(dx, 0);      // slide sideways
     else if (dy && ok(x, y + dy)) this.character.step(0, dy);      // slide up/down
-    else if (dx) this.character.face(dx);                          // bump: at least turn around
+    else if (dx) this.character.face(dx, 0);                       // bump: at least turn around
   }
 }

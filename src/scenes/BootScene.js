@@ -21,6 +21,9 @@ export class BootScene extends Phaser.Scene {
     this.load.image('walkmask', world.map.walkmask);
     for (const c of [...characters.heroes, ...characters.pets]) {
       this.load.image(c.id, c.image);
+      // Optional extra drawings for walking away from / toward the camera.
+      if (c.imageFront) this.load.image(`${c.id}-front`, c.imageFront);
+      if (c.imageBack) this.load.image(`${c.id}-back`, c.imageBack);
     }
 
     this.drawProgressBar();

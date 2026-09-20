@@ -24,10 +24,33 @@ export class Character extends Phaser.GameObjects.Container {
     const h = def.height ?? 100;
     this.shadow = scene.add.ellipse(0, 0, h * 0.55, h * 0.14, 0x000000, 0.22);
     this.sprite = scene.add.image(0, 0, def.id).setOrigin(0.5, 1); // origin at the feet
-    this.sprite.setScale(h / this.sprite.height);                 // any size scan -> same height
-    this.baseScale = this.sprite.scaleX;
     this.add([this.shadow, this.sprite]);
     scene.add.existing(this);
+
+    // Which drawing to show for which direction. "side" (def.id) always
+    // exists; front/back are optional extra drawings (see characters.json).
+    this.textures = { side: def.id };
+    if (def.imageFront) this.textures.front = `${def.id}-front`;
+    if (def.imageBack) this.textures.back = `${def.id}-back`;
+    this.pose = 'side';
+    this.applyHeight();
+  }
+
+  // Drawings can be any size scan - rescale so the character is always
+  // `height` map-pixels tall, however wide or tall its source picture is.
+  applyHeight() {
+    const h = this.def.height ?? 100;
+    this.sprite.setScale(h / this.sprite.height);
+    this.baseScale = this.sprite.scaleX;
+  }
+
+  setPose(pose) {
+    if (pose === this.pose) return;
+    const key = this.textures[pose];
+    if (!key) return;
+    this.pose = pose;
+    this.sprite.setTexture(key);
+    this.applyHeight(); // the new drawing likely has different pixel dimensions
   }
 
   /** Walk through a list of {x, y} points (e.g. from pathfinding). */
@@ -43,12 +66,23 @@ export class Character extends Phaser.GameObjects.Container {
   step(dx, dy) {
     this.x += dx;
     this.y += dy;
-    if (dx) this.face(dx);
+    this.face(dx, dy);
     this.moving = true;
   }
 
-  face(dx) {
-    // Drawings face one way; flip the picture to face the other way.
+  face(dx, dy) {
+    // Mostly up/down movement: show the front/back drawing if we have one.
+    // Otherwise use the side drawing, flipped to face left or right.
+    const preferVertical = Math.abs(dy) > Math.abs(dx) * 1.5;
+    if (preferVertical) {
+      const pose = dy < 0 ? 'back' : 'front';
+      if (this.textures[pose]) {
+        this.setPose(pose);
+        return;
+      }
+    }
+    this.setPose('side');
+    if (!dx) return;
     const drawnFacingRight = (this.def.facing ?? 'right') === 'right';
     this.sprite.setFlipX(drawnFacingRight ? dx < 0 : dx > 0);
   }
@@ -70,7 +104,7 @@ export class Character extends Phaser.GameObjects.Container {
         this.x += (dx / dist) * stepLen;
         this.y += (dy / dist) * stepLen;
       }
-      if (Math.abs(dx) > 1) this.face(dx);
+      if (Math.abs(dx) > 1 || Math.abs(dy) > 1) this.face(dx, dy);
       this.moving = true;
     }
 

@@ -1,11 +1,13 @@
 {
   "heroes": [
     {
-      "id": "treekie",
-      "name": "Miškinukė",
-      "image": "assets/characters/hero.png",
+      "id": "lilly",
+      "name": "Lilly",
+      "image": "assets/characters/lilly.png",
+      "imageFront": "assets/characters/lilly-front.png",
+      "imageBack": "assets/characters/lilly-back.png",
       "height": 110,
-      "facing": "right",
+      "facing": "left",
       "speed": 260,
       "pet": "pet"
     }
