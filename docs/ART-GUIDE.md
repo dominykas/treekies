@@ -8,6 +8,7 @@
 - Draw it **from the side, facing right**, standing on its feet. The game flips it to face left. If the drawing faces left, set `"facing": "left"` in `characters.json`.
 - Colour it in fully. Gaps in the colouring are fine, but gaps in the outline let the "paper remover" leak inside.
 - For later: a second drawing of the same character with **eyes closed** gives us blinking. A few drawings of legs in different positions give a proper walk.
+- **Optional: front and back views.** Draw the same character standing the same way, but seen from the front and from the back. The game shows these when you walk up or down instead of just flipping the side view. Not required - without them the character just flips left/right as before.
 
 **Scanning**
 - A scanner at 150–300 dpi is ideal. A phone photo also works: use daylight, no shadow, shoot from straight above, and crop to the paper.
@@ -20,11 +21,20 @@ python3 tools/cutout.py scans/fox.jpg public/assets/characters/fox.png
 ```
 If grey paper or shadows survive, try `--white 200`. If parts of the drawing vanish, try `--white 235`.
 
-Then add it to `public/data/characters.json`:
+Then add it to `public/data/characters.json`, in the `heroes` list (playable characters) or `pets` list:
 ```json
 { "id": "fox", "name": "Lapė", "image": "assets/characters/fox.png", "height": 70, "facing": "right" }
 ```
 `height` is how tall it looks on the map, in map pixels. Compare it with the houses on the map to get the size right.
+
+If you also made front/back drawings (see above), point to them the same way - process each with `cutout.py` separately and add:
+```json
+{ "id": "fox", "name": "Lapė", "image": "assets/characters/fox.png",
+  "imageFront": "assets/characters/fox-front.png", "imageBack": "assets/characters/fox-back.png",
+  "height": 70, "facing": "right" }
+```
+
+**More than one hero or pet:** `heroes` and `pets` can each hold several entries - every kid can have their own character and their own sidekick. In the game, pressing <kbd>C</kbd> opens a picker to choose a character and a sidekick independently (see `src/scenes/UIScene.js`).
 
 ## The map
 

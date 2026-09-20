@@ -8,11 +8,12 @@ Nothing here is decided. Pick whatever the kids are excited about next.
 - A pet follows in the hero's footsteps
 - Walking into a place shows a banner (Lithuanian/English)
 - Developer view (the backtick key or `?debug`)
+- Multiple playable characters and sidekicks, each with optional front/back walking drawings, chosen independently with an in-game picker (the <kbd>C</kbd> key)
 
 ## Small next steps (one evening each)
 - **Blinking:** the kids draw an eyes-closed version. Swap textures for 150 ms every few seconds.
 - **Idle life:** characters breathe (a slow scale tween) and the pet looks around when you stand still.
-- **Choose your hero:** a start screen with all the kids' characters. Each child picks theirs.
+- **Start screen:** pick your character before you even enter the map, instead of only mid-game with <kbd>C</kbd>.
 - **Sounds:** footsteps, a door chime when you arrive somewhere. The kids can record them.
 - **Sparkles** at undiscovered places, and a "discovered" list.
 - **Things on the map:** mushrooms or acorns to pick up, with a counter in the corner (counting in disguise).

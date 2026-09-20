@@ -15,6 +15,7 @@ Open the address it prints (http://localhost:5173). `pnpm dev` also prints a **N
 
 - **Walk:** arrow keys or WASD, or click/tap where you want to go
 - **Zoom:** mouse wheel, or pinch on a tablet
+- **Choose your character and sidekick:** press <kbd>C</kbd>, then arrow keys (or click) to pick
 - **Developer view:** press <kbd>`</kbd> (backtick) or open `http://localhost:5173/?debug`
 - **English:** add `?lang=en` to the address
 
@@ -28,14 +29,14 @@ public/                     ← things the game loads (pictures, data). Kids' ar
   assets/map/walkmask.png   black = can't walk, white/transparent = can walk
   assets/characters/*.png   characters and pets (transparent background)
   data/world.json           start position + places (name, position, radius, text)
-  data/characters.json      which drawings are heroes/pets, how tall, how fast
+  data/characters.json      the heroes/pets you can pick, their drawings, height, speed
 src/
   main.js                   creates the Phaser game and lists the scenes
   config.js                 knobs: language, zoom, pathfinding cell size
   scenes/BootScene.js       loads the JSON, then the pictures (with a progress bar)
   scenes/MapScene.js        the world: map, hero, pet, camera, places
-  scenes/UIScene.js         things on top of the map that don't zoom (place banner)
-  objects/Character.js      a drawing that can walk, with a bouncy walk and a shadow
+  scenes/UIScene.js         things on top of the map that don't zoom (place banner, character picker)
+  objects/Character.js      a drawing that can walk, with a bouncy walk, a shadow, and optional front/back poses
   objects/Pet.js            a character that follows another one's footsteps
   input/PlayerControls.js   keyboard + click/tap → movement
   world/WalkMask.js         reads walkmask.png, answers "can I stand here?"
