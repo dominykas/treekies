@@ -1,0 +1,52 @@
+{
+  "heroes": [
+    {
+      "id": "lilly",
+      "name": "Lilly",
+      "image": "assets/characters/lilly.png",
+      "imageFront": "assets/characters/lilly-front.png",
+      "imageBack": "assets/characters/lilly-back.png",
+      "height": 110,
+      "facing": "left",
+      "speed": 260,
+      "pet": "mimi"
+    },
+    {
+      "id": "zoe",
+      "name": "Zoe",
+      "image": "assets/characters/zoe.png",
+      "imageFront": "assets/characters/zoe-front.png",
+      "imageBack": "assets/characters/zoe-back.png",
+      "height": 130,
+      "facing": "left",
+      "speed": 260,
+      "pet": "pips"
+    }
+  ],
+  "pets": [
+    {
+      "id": "pips",
+      "name": "Pips",
+      "image": "assets/characters/pips.png",
+      "height": 45,
+      "facing": "right"
+    },
+    {
+      "id": "ciba",
+      "name": "Ciba",
+      "image": "assets/characters/ciba.png",
+      "imageFront": "assets/characters/ciba-front.png",
+      "imageBack": "assets/characters/ciba-back.png",
+      "height": 70,
+      "facing": "left"
+    },
+    {
+      "id": "mimi",
+      "name": "Mimi",
+      "image": "assets/characters/mimi.png",
+      "imageBack": "assets/characters/mimi-back.png",
+      "height": 50,
+      "facing": "right"
+    }
+  ]
+}
