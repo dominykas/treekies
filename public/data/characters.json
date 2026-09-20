@@ -9,7 +9,7 @@
       "height": 110,
       "facing": "left",
       "speed": 260,
-      "pet": "pet"
+      "pet": "mimi"
     },
     {
       "id": "zoe",
@@ -25,17 +25,27 @@
   ],
   "pets": [
     {
-      "id": "pet",
-      "name": "Lapiukas",
-      "image": "assets/characters/pet.png",
-      "height": 60,
-      "facing": "right"
-    },
-    {
       "id": "pips",
       "name": "Pips",
       "image": "assets/characters/pips.png",
       "height": 45,
+      "facing": "right"
+    },
+    {
+      "id": "ciba",
+      "name": "Ciba",
+      "image": "assets/characters/ciba.png",
+      "imageFront": "assets/characters/ciba-front.png",
+      "imageBack": "assets/characters/ciba-back.png",
+      "height": 70,
+      "facing": "left"
+    },
+    {
+      "id": "mimi",
+      "name": "Mimi",
+      "image": "assets/characters/mimi.png",
+      "imageBack": "assets/characters/mimi-back.png",
+      "height": 50,
       "facing": "right"
     }
   ]

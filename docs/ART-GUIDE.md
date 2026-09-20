@@ -12,7 +12,7 @@
 
 **Scanning**
 - A scanner at 150–300 dpi is ideal. A phone photo also works: use daylight, no shadow, shoot from straight above, and crop to the paper.
-- Put the raw scans in `scans/`. It's a good idea to keep the originals.
+- Put the raw scans in `scans/`, cropped to one character each. It's a good idea to also keep the full, unedited photo (even if it has several characters on one page) in `public/assets/original/`.
 
 **Turning a scan into a sprite**
 ```bash
@@ -20,6 +20,8 @@ pip install pillow        # once
 python3 tools/cutout.py scans/fox.jpg public/assets/characters/fox.png
 ```
 If grey paper or shadows survive, try `--white 200`. If parts of the drawing vanish, try `--white 235`.
+
+Name the files after the character's `id`: `<id>.png` for the side view, `<id>-front.png` / `<id>-back.png` for the optional extra views (for example `fox.png`, `fox-front.png`, `fox-back.png`). The game doesn't care what the files are called - it just reads whatever path you put in `characters.json` - but keeping this pattern makes the asset folder easy to scan.
 
 Then add it to `public/data/characters.json`, in the `heroes` list (playable characters) or `pets` list:
 ```json
