@@ -6,10 +6,19 @@ export class Pet extends Character {
     super(scene, owner.x - followDistance, owner.y, def);
     this.owner = owner;
     this.followDistance = followDistance;
-    this.speed = (owner.speed ?? 200) * 1.3; // a bit faster so it can catch up
+    this.speed = (owner.speed ?? 200) * 1.3; // a bit faster so it can catch up, see setCharacterDef
     // Pretend the owner just walked here from where the pet is standing,
     // so the pet doesn't run into the owner at the very start.
     owner.trail.unshift({ x: this.x, y: this.y });
+  }
+
+  // Keep the "a bit faster than its owner" boost when the pet's sprite-set
+  // changes too (e.g. the character picker swapping hero + pet together).
+  setCharacterDef(def) {
+    super.setCharacterDef(def);
+    // Guard needed because the base constructor calls this before Pet's
+    // constructor has set `this.owner` (the very first call, on construction).
+    if (this.owner) this.speed = (this.owner.speed ?? 200) * 1.3;
   }
 
   preUpdate(time, delta) {

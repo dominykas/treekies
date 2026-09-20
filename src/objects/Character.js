@@ -10,30 +10,41 @@ import Phaser from 'phaser';
 export class Character extends Phaser.GameObjects.Container {
   /**
    * @param {Phaser.Scene} scene
-   * @param {object} def   entry from characters.json ({ id, height, facing, speed })
+   * @param {object} def   entry from characters.json ({ id, height, facing, speed, imageFront, imageBack })
    */
   constructor(scene, x, y, def) {
     super(scene, x, y);
-    this.def = def;
-    this.speed = def.speed ?? 200;          // map pixels per second
     this.path = [];                          // points still to walk to
     this.moving = false;
     this.walkTime = 0;                       // drives the bouncy walk
     this.trail = [{ x, y }];                 // recent footsteps, pets follow these
 
-    const h = def.height ?? 100;
-    this.shadow = scene.add.ellipse(0, 0, h * 0.55, h * 0.14, 0x000000, 0.22);
+    this.shadow = scene.add.ellipse(0, 0, 1, 1, 0x000000, 0.22);
     this.sprite = scene.add.image(0, 0, def.id).setOrigin(0.5, 1); // origin at the feet
     this.add([this.shadow, this.sprite]);
     scene.add.existing(this);
+
+    this.pose = null;
+    this.setCharacterDef(def);
+  }
+
+  // Swap which set of drawings this character uses, e.g. when the player
+  // picks a different character. Keeps its position, path and pet intact.
+  setCharacterDef(def) {
+    this.def = def;
+    this.speed = def.speed ?? 200; // map pixels per second
 
     // Which drawing to show for which direction. "side" (def.id) always
     // exists; front/back are optional extra drawings (see characters.json).
     this.textures = { side: def.id };
     if (def.imageFront) this.textures.front = `${def.id}-front`;
     if (def.imageBack) this.textures.back = `${def.id}-back`;
-    this.pose = 'side';
-    this.applyHeight();
+    this.pose = null; // force setPose('side') below to actually apply
+    this.sprite.setFlipX(false);
+    this.setPose('side');
+
+    const h = def.height ?? 100;
+    this.shadow.setSize(h * 0.55, h * 0.14);
   }
 
   // Drawings can be any size scan - rescale so the character is always

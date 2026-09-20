@@ -10,6 +10,17 @@
       "facing": "left",
       "speed": 260,
       "pet": "pet"
+    },
+    {
+      "id": "zoe",
+      "name": "Zoe",
+      "image": "assets/characters/zoe.png",
+      "imageFront": "assets/characters/zoe-front.png",
+      "imageBack": "assets/characters/zoe-back.png",
+      "height": 130,
+      "facing": "left",
+      "speed": 260,
+      "pet": "pips"
     }
   ],
   "pets": [
@@ -18,6 +29,13 @@
       "name": "Lapiukas",
       "image": "assets/characters/pet.png",
       "height": 60,
+      "facing": "right"
+    },
+    {
+      "id": "pips",
+      "name": "Pips",
+      "image": "assets/characters/pips.png",
+      "height": 45,
       "facing": "right"
     }
   ]

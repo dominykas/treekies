@@ -16,7 +16,8 @@ export class MapScene extends Phaser.Scene {
 
   create() {
     this.world = this.cache.json.get('world');
-    const characters = this.cache.json.get('characters');
+    this.characters = this.cache.json.get('characters');
+    const characters = this.characters;
 
     // 1. The map picture, drawn behind everything (depth -1).
     const map = this.add.image(0, 0, 'map').setOrigin(0, 0).setDepth(-1);
@@ -79,6 +80,20 @@ export class MapScene extends Phaser.Scene {
   zoomTo(z) {
     const minZoom = Math.max(this.scale.width / this.mapWidth, this.scale.height / this.mapHeight);
     this.cameras.main.setZoom(Phaser.Math.Clamp(z, minZoom, Math.max(minZoom, MAX_ZOOM)));
+  }
+
+  // Swap the main character's or sidekick's sprite-set, e.g. from the
+  // character picker in UIScene. They're independent: picking a different
+  // hero doesn't change who's following them, and vice versa. Position,
+  // path and camera follow all carry over untouched.
+  setHero(id) {
+    const heroDef = this.characters.heroes.find((h) => h.id === id);
+    if (heroDef) this.hero.setCharacterDef(heroDef);
+  }
+
+  setPet(id) {
+    const petDef = this.characters.pets.find((p) => p.id === id);
+    if (petDef && this.pet) this.pet.setCharacterDef(petDef);
   }
 
   update(time, delta) {
