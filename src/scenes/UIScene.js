@@ -35,10 +35,16 @@ export class UIScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-UP', () => this.movePickerRow(-1));
     this.input.keyboard.on('keydown-DOWN', () => this.movePickerRow(1));
     this.pickerHint = this.add.text(10, 0, t({ lt: '[C] veikėjas', en: '[C] character' }), {
-      fontFamily: 'sans-serif', fontSize: '14px', color: '#ffffffa0',
-    });
-    this.scale.on('resize', () => { this.pickerHint.y = this.scale.height - 24; });
-    this.pickerHint.y = this.scale.height - 24;
+      fontFamily: 'sans-serif', fontSize: '18px', color: '#ffffff', backgroundColor: '#000000a0',
+      padding: { x: 10, y: 6 },
+    })
+      .setInteractive({ useHandCursor: true })
+      .on('pointerover', () => this.pickerHint.setBackgroundColor('#000000d0'))
+      .on('pointerout', () => this.pickerHint.setBackgroundColor('#000000a0'))
+      .on('pointerdown', () => this.togglePicker());
+    const placePickerHint = () => { this.pickerHint.setPosition(this.scale.width - this.pickerHint.width - 10, 10); };
+    this.scale.on('resize', placePickerHint);
+    placePickerHint();
 
     map.events.on('place-enter', (place) => this.showBanner(place));
     map.events.on('place-leave', () => this.hideBanner());
@@ -120,6 +126,7 @@ export class UIScene extends Phaser.Scene {
       row.titleText = this.add.text(0, y, '', {
         fontFamily: 'sans-serif', fontSize: '20px', fontStyle: 'bold', color: '#4a2f1d',
       }).setOrigin(0.5, 0);
+      this.picker.add(row.titleText);
       y += row.titleText.height + 10;
 
       const portraitH = 90;
