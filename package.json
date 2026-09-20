@@ -2,6 +2,8 @@
   "name": "treekies",
   "version": "1.0.0",
   "description": "Miškinukės / Treekies - a family-made browser game",
+  "license": "MIT",
+  "author": "Dalia Tysliavaitė-Blyžė, Dominykas Blyžė, Elena Blyžė, Elžbieta Blyžė",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
